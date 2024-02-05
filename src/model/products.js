@@ -30,9 +30,23 @@ function searchProducts(search_term) {
     return search_products.all("%" + search_term + "%");
 }
 
+const select_product = db.prepare(/*sql*/ `
+  SELECT
+    products.id,
+    products.name,
+    categories.name AS category_name,
+    categories.description AS category_description
+  FROM products
+  JOIN categories ON products.category_id = categories.id
+  WHERE products.id = ?
+`);
+
+function getProduct(id) {
+  return select_product.get(id);
+}
 
 
-module.exports = {listProducts, searchProducts}
+module.exports = {listProducts, searchProducts, getProduct}
 
 
 
