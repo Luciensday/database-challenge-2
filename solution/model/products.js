@@ -2,7 +2,7 @@ const db = require("../database/db.js");
 
 module.exports = { listProducts, getProduct, searchProducts, createProduct };
 
-const select_products = db.prepare(/*sql*/ `
+const select_products = db.prepare(/*sql*/`
   SELECT
     id,
     name,
